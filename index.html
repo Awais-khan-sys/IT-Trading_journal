@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TradeJournal Pro</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══ SVG ICON LIBRARY ══ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <symbol id="ic-home"     viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="ic-list"     viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+  <symbol id="ic-chart-up" viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+  <symbol id="ic-book"     viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></symbol>
+  <symbol id="ic-target"   viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="ic-eye"      viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="ic-mail"     viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></symbol>
+  <symbol id="ic-award"    viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></symbol>
+  <symbol id="ic-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+  <symbol id="ic-plus"     viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+  <symbol id="ic-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+  <symbol id="ic-upload"   viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></symbol>
+  <symbol id="ic-mic"      viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></symbol>
+  <symbol id="ic-logout"   viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+  <symbol id="ic-x"        viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+  <symbol id="ic-moon"     viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></symbol>
+  <symbol id="ic-sun"      viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></symbol>
+  <symbol id="ic-user"     viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+  <symbol id="ic-filter"   viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></symbol>
+  <symbol id="ic-search"   viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="ic-check"    viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+  <symbol id="ic-trash"    viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="ic-edit"     viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></symbol>
+  <symbol id="ic-bar-2"    viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+  <symbol id="ic-lock"     viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="ic-zap"      viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="ic-shield"   viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="ic-trending" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></symbol>
+  <symbol id="ic-dollar"   viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+  <symbol id="ic-cal"      viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="ic-note"     viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></symbol>
+  <symbol id="ic-globe"    viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="ic-activity" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+  <symbol id="ic-info"     viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></symbol>
+  <symbol id="ic-image"    viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+  <symbol id="ic-link"     viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="ic-clipboard" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></symbol>
+  <symbol id="ic-cpu"      viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></symbol>
+  <symbol id="ic-help"     viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+</svg>
+
+<!-- ══ PARTICLE CANVAS (background effect) ══ -->
+<canvas id="particle-canvas"></canvas>
+
+<!-- ══ AUTH SCREEN ══ -->
+<div class="auth-screen" id="auth-screen">
+  <div class="auth-wrap">
+    <div class="auth-logo">
+      <div class="auth-brand-icon">
+        <svg class="icon icon-lg icon-white" viewBox="0 0 24 24"><use href="#ic-trending"/></svg>
+      </div>
+      <div class="auth-brand-name">TradeJournal Pro</div>
+      <div class="auth-tag">// your complete trading intelligence platform</div>
+    </div>
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="a-tab active" onclick="switchTab('login')">Sign In</button>
+        <button class="a-tab" onclick="switchTab('reg')">Create Account</button>
+      </div>
+      <!-- LOGIN -->
+      <div id="auth-login">
+        <div class="fg" style="margin-bottom:12px"><label>Username</label><input id="l-user" type="text" placeholder="your username" autocomplete="username"></div>
+        <div class="fg" style="margin-bottom:18px"><label>Password</label><input id="l-pass" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px" onclick="doLogin()">Sign In</button>
+        <div class="a-err" id="a-err-l"></div>
+      </div>
+      <!-- REGISTER -->
+      <div id="auth-reg" class="hidden">
+        <div class="fg" style="margin-bottom:10px"><label>Username *</label><input id="r-user" type="text" placeholder="choose a username" autocomplete="username"><span class="hint">Letters, numbers, underscore (min 3 chars)</span></div>
+        <div class="fg" style="margin-bottom:10px"><label>Password *</label><input id="r-pass" type="password" placeholder="••••••••" autocomplete="new-password"><span class="hint">Minimum 6 characters</span></div>
+        <div class="fg" style="margin-bottom:18px"><label>Confirm Password *</label><input id="r-pass2" type="password" placeholder="••••••••" autocomplete="new-password" onkeydown="if(event.key==='Enter')doRegister()"></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:11px" onclick="doRegister()">Create Account</button>
+        <div class="a-err" id="a-err-r"></div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:10px;color:var(--text-3);margin-top:14px;font-family:var(--mono)">// data stored locally · private · no server required</p>
+  </div>
+</div>
+
+<!-- ══ SETUP OVERLAY ══ -->
+<div class="setup-overlay hidden" id="setup-overlay">
+  <div class="setup-box">
+    <h2>Account Setup</h2>
+    <p class="sub">Configure your account once. These settings power all your dashboard calculations.</p>
+    <div class="fg-2">
+      <div class="fg" style="grid-column:1/-1"><label>Full Name (optional)</label><input id="su-name" placeholder="John Smith"></div>
+      <div class="fg"><label>Starting Balance *</label><input id="su-balance" type="number" placeholder="10000" step="0.01"></div>
+      <div class="fg"><label>Currency</label>
+        <select id="su-currency"><option value="USD">USD ($)</option><option value="PKR">PKR (₨)</option><option value="EUR">EUR (€)</option><option value="GBP">GBP (£)</option><option value="AED">AED (د.إ)</option><option value="SAR">SAR (﷼)</option><option value="CAD">CAD (C$)</option><option value="AUD">AUD (A$)</option><option value="JPY">JPY (¥)</option><option value="INR">INR (₹)</option></select>
+      </div>
+      <div class="fg"><label>Broker</label><input id="su-broker" placeholder="Binance, XM, Exness..."></div>
+      <div class="fg"><label>Risk per Trade (%)</label><input id="su-risk" type="number" placeholder="1" step="0.1" min="0.1"></div>
+      <div class="fg"><label>Trading Style</label>
+        <select id="su-style"><option value="scalp">Scalper</option><option value="day">Day Trader</option><option value="swing" selected>Swing Trader</option><option value="position">Position Trader</option><option value="crypto">Crypto Trader</option></select>
+      </div>
+      <div class="fg" style="grid-column:1/-1"><label>Default Commission per Side</label><input id="su-comm" type="number" placeholder="0.00" step="0.01" min="0"></div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;justify-content:center;padding:12px;margin-top:22px;font-size:14px" onclick="completeSetup()">Complete Setup</button>
+  </div>
+</div>
+
+<!-- ══ MAIN APP ══ -->
+<div id="main-app" class="hidden">
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-head">
+      <div class="brand-mark"><svg class="icon icon-sm icon-white" viewBox="0 0 24 24"><use href="#ic-trending"/></svg></div>
+      <div>
+        <div class="brand-name">TradeJournal</div>
+        <div class="brand-ver">Pro v3.1</div>
+      </div>
+    </div>
+
+    <div class="ticker-strip">
+      <div class="ticker-label"><span class="ticker-live-dot"></span>Live Market</div>
+      <div id="ticker-body"></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-group-label">Overview</div>
+      <button class="nav-item active" data-s="dashboard" onclick="showSection('dashboard')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-home"/></svg><span>Dashboard</span>
+      </button>
+      <button class="nav-item" data-s="trades" onclick="showSection('trades')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-list"/></svg><span>Trades</span>
+      </button>
+      <button class="nav-item" data-s="analytics" onclick="showSection('analytics')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-chart-up"/></svg><span>Analytics</span>
+      </button>
+      <div class="nav-group-label">Tools</div>
+      <button class="nav-item" data-s="journal" onclick="showSection('journal')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-book"/></svg><span>Journal</span>
+      </button>
+      <button class="nav-item" data-s="goals" onclick="showSection('goals')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-target"/></svg><span>Goals</span>
+      </button>
+      <button class="nav-item" data-s="watchlist" onclick="showSection('watchlist')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-eye"/></svg><span>Watchlist</span>
+      </button>
+      <button class="nav-item" data-s="report" onclick="showSection('report')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-mail"/></svg><span>Report</span>
+      </button>
+      <div class="nav-group-label">More</div>
+      <button class="nav-item" data-s="achievements" onclick="showSection('achievements')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-award"/></svg><span>Achievements</span>
+      </button>
+      <button class="nav-item" data-s="settings" onclick="showSection('settings')">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-settings"/></svg><span>Settings</span>
+      </button>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="user-pill" onclick="showSection('settings')">
+        <div class="u-avatar" id="u-avatar">?</div>
+        <div class="user-info"><div class="u-name" id="u-name">—</div><div class="u-role" id="u-role">trader</div></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <!-- TOPBAR -->
+    <div class="topbar">
+      <div><div class="topbar-title" id="tb-title">Dashboard</div><div class="topbar-sub" id="tb-sub">// performance overview</div></div>
+      <div class="topbar-spacer"></div>
+      <span style="font-size:10px;color:var(--text-3);font-family:var(--mono)" id="hdr-user"></span>
+      <!-- VOICE BUTTON -->
+      <button class="voice-btn" id="voice-btn" onclick="toggleVoice()" title="Voice commands — requires Chrome/Edge">
+        <svg class="icon" viewBox="0 0 24 24"><use href="#ic-mic"/></svg>
+      </button>
+      <!-- THEME TOGGLE -->
+      <button class="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark theme"></button>
+      <button class="t-btn" onclick="exportCSV()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-download"/></svg>CSV</button>
+      <button class="t-btn" onclick="exportJSON()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-shield"/></svg>Backup</button>
+      <button class="t-btn" onclick="triggerImport()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-upload"/></svg>Import</button>
+      <button class="t-btn accent" onclick="openModal()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-plus"/></svg>Log Trade</button>
+      <button class="t-btn danger" onclick="doLogout()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-logout"/></svg>Logout</button>
+      <input id="csv-in" type="file" accept=".csv" class="hidden" onchange="handleImport(event)">
+    </div>
+
+    <!-- CONTENT -->
+    <div class="scroll">
+    <div class="wrap">
+
+    <!-- ══ DASHBOARD ══ -->
+    <div id="sec-dashboard">
+      <div class="kpi-grid kpi-4" style="margin-bottom:10px">
+        <div class="kpi" style="--kpi-c:var(--emerald)">
+          <div class="kpi-top"><div class="kpi-icon-wrap"><svg class="icon icon-md icon-green" viewBox="0 0 24 24"><use href="#ic-dollar"/></svg></div><span class="kpi-chip" id="bal-chip">—</span></div>
+          <div class="kpi-label">Account Balance</div>
+          <div class="kpi-value c-g" id="kpi-bal">—</div>
+          <div class="kpi-footer">Starting balance + net P&L</div>
+        </div>
+        <div class="kpi" style="--kpi-c:var(--sky)">
+          <div class="kpi-top"><div class="kpi-icon-wrap"><svg class="icon icon-md icon-sky" viewBox="0 0 24 24"><use href="#ic-cal"/></svg></div></div>
+          <div class="kpi-label">Today's P&L</div>
+          <div class="kpi-value" id="kpi-today">—</div>
+          <div class="kpi-footer">Closed positions today</div>
+        </div>
+        <div class="kpi" style="--kpi-c:var(--violet)">
+          <div class="kpi-top"><div class="kpi-icon-wrap"><svg class="icon icon-md icon-violet" viewBox="0 0 24 24"><use href="#ic-activity"/></svg></div></div>
+          <div class="kpi-label">This Week P&L</div>
+          <div class="kpi-value" id="kpi-week">—</div>
+          <div class="kpi-footer">Current week performance</div>
+        </div>
+        <div class="kpi" style="--kpi-c:var(--amber)">
+          <div class="kpi-top"><div class="kpi-icon-wrap"><svg class="icon icon-md icon-amber" viewBox="0 0 24 24"><use href="#ic-target"/></svg></div></div>
+          <div class="kpi-label">Win Rate</div>
+          <div class="kpi-value" id="kpi-wr">—</div>
+          <div class="kpi-footer">Closed trades win %</div>
+        </div>
+      </div>
+
+      <div class="kpi-grid kpi-4" style="margin-bottom:16px">
+        <div class="kpi" style="--kpi-c:var(--sky)">
+          <div class="kpi-label">Total Trades</div>
+          <div class="kpi-value" id="kpi-total">—</div>
+        </div>
+        <div class="kpi" style="--kpi-c:var(--emerald)">
+          <div class="kpi-label">Open Positions</div>
+          <div class="kpi-value c-s" id="kpi-open">—</div>
+        </div>
+        <div class="kpi" style="--kpi-c:var(--violet)">
+          <div class="kpi-label">Profit Factor</div>
+          <div class="kpi-value" id="kpi-pf">—</div>
+        </div>
+        <div class="kpi" style="--kpi-c:var(--amber)">
+          <div class="kpi-label">Performance Grade</div>
+          <div class="grade-ring" id="perf-grade">—</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Cumulative P&L</span></div>
+          <div style="height:180px;padding:14px"><canvas id="pnl-chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Win / Loss Distribution</span></div>
+          <div style="height:180px;padding:14px"><canvas id="wl-chart"></canvas></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Activity Heatmap (Last 90 Days)</span></div>
+          <div style="padding:14px 18px"><div class="hm-grid" id="heatmap"></div></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Streak</span></div>
+          <div style="padding:18px;text-align:center">
+            <div style="font-size:40px;font-weight:800;font-family:var(--mono);letter-spacing:-2px" id="str-cur">0</div>
+            <div style="font-size:11px;color:var(--text-2);font-family:var(--mono);margin-top:4px" id="str-type">—</div>
+            <div style="font-size:10px;color:var(--text-3);margin-top:12px;font-family:var(--mono)">Best streak: <span id="str-max">0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS ROW -->
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-head"><span class="card-title">Performance Statistics</span></div>
+        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:0">
+          <div class="stat-cell"><div class="s-val" id="st-avgw">—</div><div class="s-lbl">Avg Win</div></div>
+          <div class="stat-cell"><div class="s-val c-r" id="st-avgl">—</div><div class="s-lbl">Avg Loss</div></div>
+          <div class="stat-cell"><div class="s-val" id="st-pf">—</div><div class="s-lbl">Profit Factor</div></div>
+          <div class="stat-cell"><div class="s-val" id="st-rr">—</div><div class="s-lbl">Risk:Reward</div></div>
+          <div class="stat-cell"><div class="s-val c-r" id="st-dd">—</div><div class="s-lbl">Max Drawdown</div></div>
+          <div class="stat-cell"><div class="s-val" id="st-exp">—</div><div class="s-lbl">Expectancy</div></div>
+          <div class="stat-cell"><div class="s-val" id="st-sharpe">—</div><div class="s-lbl">Sharpe Ratio</div></div>
+        </div>
+      </div>
+
+      <!-- BEST/WORST + OPEN POSITIONS -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="card" style="padding:18px">
+          <div class="card-title" style="margin-bottom:12px">Best Trade</div>
+          <div style="font-size:18px;font-weight:800;font-family:var(--mono)" id="best-sym">—</div>
+          <div class="c-g" style="font-size:15px;font-weight:700;font-family:var(--mono);margin-top:4px" id="best-pnl">—</div>
+        </div>
+        <div class="card" style="padding:18px">
+          <div class="card-title" style="margin-bottom:12px">Worst Trade</div>
+          <div style="font-size:18px;font-weight:800;font-family:var(--mono)" id="worst-sym">—</div>
+          <div class="c-r" style="font-size:15px;font-weight:700;font-family:var(--mono);margin-top:4px" id="worst-pnl">—</div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Open Positions</span></div>
+          <div id="open-list"></div>
+        </div>
+      </div>
+    </div><!-- /sec-dashboard -->
+
+    <!-- ══ TRADES ══ -->
+    <div id="sec-trades" class="hidden">
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-head">
+          <span class="card-title">Trade Log</span>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <div class="filter-tabs">
+              <button class="ftab active" data-f="all" onclick="setFilter('all')">All</button>
+              <button class="ftab" data-f="open" onclick="setFilter('open')">Open</button>
+              <button class="ftab" data-f="closed" onclick="setFilter('closed')">Closed</button>
+              <button class="ftab" data-f="win" onclick="setFilter('win')">Wins</button>
+              <button class="ftab" data-f="loss" onclick="setFilter('loss')">Losses</button>
+            </div>
+            <div style="position:relative">
+              <svg class="icon icon-sm" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);pointer-events:none" viewBox="0 0 24 24"><use href="#ic-search"/></svg>
+              <input placeholder="Search symbol, tag, note..." oninput="onSearch(this.value)" style="padding-left:28px;width:210px;height:30px;font-size:12px">
+            </div>
+            <button class="btn btn-primary" style="height:30px;padding:0 14px;font-size:12px" onclick="openModal()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-plus"/></svg>Log Trade</button>
+          </div>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th data-s="date" onclick="sortBy('date')">Date</th>
+                <th data-s="symbol" onclick="sortBy('symbol')">Symbol</th>
+                <th>Dir</th>
+                <th data-s="entryPrice" onclick="sortBy('entryPrice')">Entry</th>
+                <th>Exit</th>
+                <th>SL</th>
+                <th data-s="size" onclick="sortBy('size')">Size</th>
+                <th data-s="fp" onclick="sortBy('fp')">P&L</th>
+                <th>Src</th>
+                <th>Status</th>
+                <th>Emo</th>
+                <th>Tags</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="trade-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ANALYTICS ══ -->
+    <div id="sec-analytics" class="hidden">
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px">
+        <div class="kpi"><div class="kpi-label">Total Profit</div><div class="kpi-value c-g" id="a-profit">—</div></div>
+        <div class="kpi"><div class="kpi-label">Total Loss</div><div class="kpi-value c-r" id="a-loss">—</div></div>
+        <div class="kpi"><div class="kpi-label">Net P&L</div><div class="kpi-value" id="a-net">—</div></div>
+        <div class="kpi"><div class="kpi-label">Expectancy</div><div class="kpi-value" id="a-exp">—</div></div>
+        <div class="kpi"><div class="kpi-label">Sharpe Ratio</div><div class="kpi-value" id="a-sharpe">—</div></div>
+        <div class="kpi"><div class="kpi-label">Closed Trades</div><div class="kpi-value" id="a-trades">—</div></div>
+      </div>
+
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-head"><span class="card-title">Trade P&L Breakdown</span></div>
+        <div id="bar-wrap" style="height:220px;padding:14px"><canvas id="bar-chart"></canvas></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Monthly Performance</span></div>
+          <div style="height:200px;padding:14px"><canvas id="month-chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Performance by Symbol</span></div>
+          <div style="height:200px;padding:14px"><canvas id="sym-chart"></canvas></div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Emotion Tracker</span></div>
+          <div style="height:200px;padding:14px"><canvas id="emo-chart"></canvas></div>
+        </div>
+        <div class="card">
+          <div class="card-head"><span class="card-title">Setup Performance</span></div>
+          <div class="tbl-wrap">
+            <table>
+              <thead><tr><th>Setup</th><th>Trades</th><th>Win%</th><th>Total P&L</th><th>Avg P&L</th></tr></thead>
+              <tbody id="setup-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ JOURNAL ══ -->
+    <div id="sec-journal" class="hidden">
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-head"><span class="card-title">New Journal Entry</span></div>
+        <div style="padding:16px">
+          <div class="fg" style="margin-bottom:10px"><label>Entry Title</label><input id="note-title" placeholder="Today's reflection, trade review..."></div>
+          <div class="fg" style="margin-bottom:10px"><label>Journal Entry</label><textarea id="note-body" style="min-height:110px" placeholder="Reflect on your trading decisions, emotions, and lessons learned..."></textarea></div>
+          <div style="display:flex;gap:8px">
+            <div class="fg" style="margin:0;flex:1"><label>Mood</label>
+              <select id="note-mood"><option value="great">🟢 Great</option><option value="good" selected>🔵 Good</option><option value="okay">🟡 Okay</option><option value="bad">🔴 Bad</option><option value="terrible">⚫ Terrible</option></select>
+            </div>
+            <div style="display:flex;align-items:flex-end">
+              <button class="btn btn-primary" onclick="addNote()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-plus"/></svg>Add Entry</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="notes-list"></div>
+    </div>
+
+    <!-- ══ GOALS ══ -->
+    <div id="sec-goals" class="hidden">
+      <div class="card" style="margin-bottom:14px">
+        <div class="card-head"><span class="card-title">Set a New Goal</span></div>
+        <div style="padding:16px;display:grid;grid-template-columns:1fr 1fr auto auto;gap:10px;align-items:end">
+          <div class="fg" style="margin:0"><label>Goal Description</label><input id="gl-name" placeholder="Monthly profit target..."></div>
+          <div class="fg" style="margin:0"><label>Target Amount</label><input id="gl-target" type="number" placeholder="1000.00" step="0.01"></div>
+          <div class="fg" style="margin:0"><label>Type</label>
+            <select id="gl-type"><option value="profit">Profit</option><option value="trades"># Trades</option><option value="wr">Win Rate %</option></select>
+          </div>
+          <button class="btn btn-primary" onclick="addGoal()">Add Goal</button>
+        </div>
+      </div>
+      <div id="goals-list"></div>
+    </div>
+
+    <!-- ══ WATCHLIST ══ -->
+    <div id="sec-watchlist" class="hidden">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div class="card">
+          <div class="card-head"><span class="card-title">Watching</span></div>
+          <div id="wl-items"></div>
+          <div style="padding:14px 16px;border-top:1px solid var(--border)">
+            <div style="display:grid;grid-template-columns:auto 1fr auto auto;gap:8px;align-items:end">
+              <div class="fg" style="margin:0"><label>Symbol</label><input id="wl-sym" placeholder="BTCUSD" style="width:100px;font-family:var(--mono)"></div>
+              <div class="fg" style="margin:0"><label>Note</label><input id="wl-note" placeholder="Key level at..."></div>
+              <div class="fg" style="margin:0"><label>Bias</label>
+                <select id="wl-bias" style="width:90px"><option value="bullish">Bullish</option><option value="bearish">Bearish</option><option value="neutral">Neutral</option></select>
+              </div>
+              <button class="btn btn-primary" style="padding:9px 14px" onclick="addWl()">Add</button>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="padding:20px;align-self:start">
+          <div class="card-title" style="margin-bottom:12px">Quick Trade</div>
+          <p style="font-size:13px;color:var(--text-2);line-height:1.6;margin-bottom:14px">When ready to log a trade on a watched asset, use the button below.</p>
+          <button class="btn btn-primary" onclick="showSection('trades');openModal()">Log a Trade</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ REPORT ══ -->
+    <div id="sec-report" class="hidden">
+      <div class="card" style="max-width:640px;margin:0 auto">
+        <div class="card-head"><span class="card-title">Weekly Performance Report</span></div>
+        <div style="padding:18px">
+          <div class="rpt-row"><span class="rpt-k">Win Rate</span><span class="rpt-v" id="r-wr">—</span></div>
+          <div class="rpt-row"><span class="rpt-k">Risk:Reward</span><span class="rpt-v" id="r-rr">—</span></div>
+          <div class="rpt-row"><span class="rpt-k">Profit Factor</span><span class="rpt-v" id="r-pf">—</span></div>
+          <div class="rpt-row"><span class="rpt-k">Total Profit</span><span class="rpt-v" id="r-profit">—</span></div>
+          <div class="rpt-row"><span class="rpt-k">Total Loss</span><span class="rpt-v" id="r-loss">—</span></div>
+          <div class="rpt-row"><span class="rpt-k">Net P&L</span><span class="rpt-v" id="r-net">—</span></div>
+          <div class="rpt-row"><span class="rpt-k">Trades This Week</span><span class="rpt-v" id="r-tc">—</span></div>
+          <div class="email-card">
+            <h4>Copy Weekly Report</h4>
+            <p>Copy the full report text to share via email, Slack, or any messaging app.</p>
+            <div class="fg" style="margin-bottom:12px"><label>Your Email (optional, for header)</label><input id="email-in" type="email" placeholder="you@email.com"></div>
+            <button class="btn btn-primary" onclick="copyReport()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-clipboard"/></svg>Copy Report</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══ ACHIEVEMENTS ══ -->
+    <div id="sec-achievements" class="hidden">
+      <div class="ach-grid" id="ach-grid"></div>
+    </div>
+
+    <!-- ══ SETTINGS ══ -->
+    <div id="sec-settings" class="hidden">
+      <div class="settings-section">
+        <h3>Account Settings</h3>
+        <div class="settings-grid">
+          <div class="fg"><label>Display Name</label><input id="s-name" placeholder="John Smith"></div>
+          <div class="fg"><label>Starting Balance</label><input id="s-balance" type="number" step="0.01"></div>
+          <div class="fg"><label>Currency</label>
+            <select id="s-currency"><option value="USD">USD ($)</option><option value="PKR">PKR (₨)</option><option value="EUR">EUR (€)</option><option value="GBP">GBP (£)</option><option value="AED">AED</option><option value="SAR">SAR (﷼)</option><option value="CAD">CAD (C$)</option><option value="AUD">AUD (A$)</option><option value="JPY">JPY (¥)</option><option value="INR">INR (₹)</option></select>
+          </div>
+          <div class="fg"><label>Broker</label><input id="s-broker" placeholder="Binance, XM..."></div>
+          <div class="fg"><label>Risk per Trade (%)</label><input id="s-risk" type="number" step="0.1"></div>
+          <div class="fg"><label>Trading Style</label>
+            <select id="s-style"><option value="scalp">Scalper</option><option value="day">Day Trader</option><option value="swing">Swing Trader</option><option value="position">Position Trader</option><option value="crypto">Crypto Trader</option></select>
+          </div>
+          <div class="fg full"><label>Default Commission per Side</label><input id="s-comm" type="number" step="0.01" placeholder="0.00"></div>
+        </div>
+        <div class="divider"></div>
+        <h3>Change Password</h3>
+        <div class="settings-grid">
+          <div class="fg"><label>Current Password</label><input id="s-op" type="password" placeholder="••••••••"></div>
+          <div class="fg"><label>New Password</label><input id="s-np" type="password" placeholder="••••••••"></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin-top:18px;flex-wrap:wrap">
+          <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+          <span id="s-saved" class="hidden inline-ok">Settings saved</span>
+          <span id="s-err" class="hidden" style="font-size:11px;color:var(--red);font-family:var(--mono)"></span>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>Voice Agent</h3>
+        <div style="background:var(--surface-2);border-radius:10px;padding:14px;margin-bottom:14px;border:1px solid var(--border)">
+          <div style="font-size:12px;color:var(--text-2);line-height:1.7;margin-bottom:10px">
+            Voice commands require <strong>Chrome</strong> or <strong>Edge</strong> browser. The mic button in the topbar activates voice recognition.
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+            <div class="voice-cmd-info"><span>"dashboard / trades / analytics"</span> Navigate</div>
+            <div class="voice-cmd-info"><span>"add trade"</span> Open form</div>
+            <div class="voice-cmd-info"><span>"my balance"</span> Read balance aloud</div>
+            <div class="voice-cmd-info"><span>"win rate"</span> Read win rate</div>
+            <div class="voice-cmd-info"><span>"today's pnl"</span> Read today P&L</div>
+            <div class="voice-cmd-info"><span>"how many trades"</span> Trade count</div>
+            <div class="voice-cmd-info"><span>"dark mode / light mode"</span> Switch theme</div>
+            <div class="voice-cmd-info"><span>"export"</span> Download CSV</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>Data Management</h3>
+        <div class="btn-row">
+          <button class="btn btn-ghost" onclick="exportCSV()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-download"/></svg>Export CSV</button>
+          <button class="btn btn-ghost" onclick="exportJSON()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-shield"/></svg>JSON Backup</button>
+          <button class="btn btn-ghost" onclick="triggerImport()"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-upload"/></svg>Import CSV</button>
+        </div>
+        <p style="font-size:11px;color:var(--text-3);margin-top:10px;font-family:var(--mono)">CSV headers: date, symbol, direction, size, entry, exit, sl, tp, commission, p&l, setup, emotion, tags, notes</p>
+      </div>
+
+      <div class="settings-section">
+        <h3>Keyboard Shortcuts</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Alt+D</kbd> Dashboard</div>
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Alt+T</kbd> Trades</div>
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Alt+A</kbd> Analytics</div>
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Alt+J</kbd> Journal</div>
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Ctrl+N</kbd> New Trade</div>
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Esc</kbd> Close modal</div>
+          <div style="font-size:11px;color:var(--text-2)"><kbd>Space</kbd> Voice (topbar)</div>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+      <div class="danger-section">
+        <h3>Danger Zone</h3>
+        <p>Permanently delete all your trades, notes, goals, and settings. This cannot be undone.</p>
+        <button class="btn btn-danger" onclick="resetData()"><svg class="icon icon-sm icon-red" viewBox="0 0 24 24"><use href="#ic-trash"/></svg>Delete All My Data</button>
+      </div>
+    </div>
+
+    </div></div>
+  </div>
+</div>
+</div>
+
+<!-- ══ TRADE MODAL ══ -->
+<div class="modal-bg" id="trade-modal">
+<div class="modal">
+  <div class="modal-head">
+    <h2 id="modal-title">Log New Trade</h2>
+    <button class="modal-x" onclick="closeModal()"><svg class="icon" viewBox="0 0 24 24"><use href="#ic-x"/></svg></button>
+  </div>
+
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Date</label><input id="f-dt" type="date"></div>
+    <div class="fg"><label>Symbol / Asset</label><input id="f-sym" placeholder="EURUSD, BTC, AAPL..." oninput="this.value=this.value.toUpperCase()"></div>
+  </div>
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Direction</label><select id="f-dir" onchange="recalcPnl()"><option value="long">Long (Buy)</option><option value="short">Short (Sell)</option></select></div>
+    <div class="fg"><label>Position Size</label><input id="f-sz" type="number" placeholder="1.00" step="0.01" oninput="recalcPnl()"></div>
+  </div>
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Entry Price</label><input id="f-en" type="number" placeholder="0.0000" step="0.0001" oninput="recalcPnl()"></div>
+    <div class="fg"><label>Exit Price <span style="color:var(--text-3)">(blank = open)</span></label><input id="f-ex" type="number" placeholder="blank = open" step="0.0001" oninput="recalcPnl()"></div>
+  </div>
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Stop Loss</label><input id="f-sl" type="number" placeholder="0.0000" step="0.0001" oninput="recalcPnl()"></div>
+    <div class="fg"><label>Take Profit</label><input id="f-tp" type="number" placeholder="0.0000" step="0.0001" oninput="recalcPnl()"></div>
+  </div>
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Commission per Side</label><input id="f-comm" type="number" placeholder="0.00" step="0.01" oninput="recalcPnl()"></div>
+    <div class="fg"><label>Session</label><select id="f-sess"><option value="">—</option><option value="london">London</option><option value="newyork">New York</option><option value="tokyo">Tokyo</option><option value="sydney">Sydney</option><option value="overlap">Overlap</option></select></div>
+  </div>
+
+  <!-- P&L -->
+  <div style="margin-bottom:12px">
+    <label style="margin-bottom:6px;display:block">P&L</label>
+    <div class="pnl-box" id="pnl-auto">
+      <div class="pnl-big" id="pnl-prev">—</div>
+      <div class="pnl-src" id="pnl-src">Enter entry & exit to auto-calculate</div>
+      <span class="pnl-switch" onclick="toggleManual()">Enter manually instead</span>
+    </div>
+    <div id="manual-wrap" class="hidden" style="margin-top:8px">
+      <div class="fg"><label>Manual P&L (positive = profit, negative = loss)</label><input id="f-mpnl" type="number" placeholder="e.g. 150.00 or -75.00" step="0.01" oninput="onManualChange()"><span class="hint">Overrides auto-calculation</span></div>
+      <span class="pnl-switch" onclick="toggleManual()">Use auto-calculate instead</span>
+    </div>
+  </div>
+
+  <!-- RISK CALCULATOR -->
+  <div class="risk-calc" style="margin-bottom:12px">
+    <div class="risk-calc-title"><svg class="icon icon-sm" style="stroke:var(--emerald-2)" viewBox="0 0 24 24"><use href="#ic-zap"/></svg>Risk Calculator</div>
+    <div class="risk-vals">
+      <div class="rv-item"><div class="rv" id="rc-sz">—</div><div class="rl">Suggested Size</div></div>
+      <div class="rv-item"><div class="rv" id="rc-r">—</div><div class="rl">Risk Amount</div></div>
+      <div class="rv-item"><div class="rv" id="rc-rr">—</div><div class="rl">R:R Ratio</div></div>
+      <div class="rv-item"><div class="rv" id="rc-rp">—</div><div class="rl">Risk % Balance</div></div>
+    </div>
+  </div>
+
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Trading Setup</label><input id="f-setup" placeholder="Breakout, Pullback, ICT, Reversal..."></div>
+    <div class="fg"><label>Timeframe</label><select id="f-tf"><option value="">—</option><option value="M1">M1</option><option value="M5">M5</option><option value="M15">M15</option><option value="M30">M30</option><option value="H1">H1</option><option value="H4">H4</option><option value="D1">D1</option><option value="W1">W1</option></select></div>
+  </div>
+  <div class="fg-2" style="margin-bottom:12px">
+    <div class="fg"><label>Emotional State</label><select id="f-emo"><option value="confident">Confident</option><option value="neutral" selected>Neutral</option><option value="anxious">Anxious</option><option value="patient">Patient</option><option value="fomo">FOMO</option><option value="greedy">Greedy</option><option value="disciplined">Disciplined</option><option value="frustrated">Frustrated</option></select></div>
+    <div class="fg"><label>Tags <span style="color:var(--text-3)">(comma separated)</span></label><input id="f-tags" placeholder="breakout, ICT, swing, scalp..."></div>
+  </div>
+
+  <!-- ══ SCREENSHOT — URL + File Upload + Paste ══ -->
+  <div class="fg" style="margin-bottom:12px">
+    <label>Chart Screenshot</label>
+    <div class="sc-upload-area" id="sc-upload-area" ondragover="event.preventDefault();this.classList.add('drag-over')" ondragleave="this.classList.remove('drag-over')" ondrop="handleScDrop(event)">
+      <div class="sc-upload-tabs">
+        <button type="button" class="sc-tab active" id="sc-tab-url" onclick="switchScTab('url')"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-link"/></svg>URL</button>
+        <button type="button" class="sc-tab" id="sc-tab-file" onclick="switchScTab('file')"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-upload"/></svg>Upload</button>
+        <button type="button" class="sc-tab" id="sc-tab-paste" onclick="switchScTab('paste')"><svg class="icon icon-sm" viewBox="0 0 24 24"><use href="#ic-clipboard"/></svg>Paste</button>
+      </div>
+      <!-- URL panel -->
+      <div id="sc-panel-url" class="sc-panel">
+        <input id="f-sc" type="url" placeholder="https://i.imgur.com/... or any image URL" oninput="previewScUrl()">
+      </div>
+      <!-- Upload panel -->
+      <div id="sc-panel-file" class="sc-panel hidden">
+        <div class="sc-dropzone" onclick="document.getElementById('sc-file-in').click()">
+          <svg class="icon icon-lg" style="stroke:var(--text-3)" viewBox="0 0 24 24"><use href="#ic-image"/></svg>
+          <div style="font-size:12px;color:var(--text-2);margin-top:8px">Click to browse or drag & drop image here</div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:4px;font-family:var(--mono)">PNG, JPG, WEBP, GIF supported</div>
+        </div>
+        <input id="sc-file-in" type="file" accept="image/*" class="hidden" onchange="handleScFile(event)">
+      </div>
+      <!-- Paste panel -->
+      <div id="sc-panel-paste" class="sc-panel hidden">
+        <div class="sc-paste-zone" id="sc-paste-zone" tabindex="0" onpaste="handleScPaste(event)" onclick="this.focus()">
+          <svg class="icon icon-lg" style="stroke:var(--text-3)" viewBox="0 0 24 24"><use href="#ic-clipboard"/></svg>
+          <div style="font-size:12px;color:var(--text-2);margin-top:8px">Click here then press <kbd>Ctrl+V</kbd> to paste image</div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:4px;font-family:var(--mono)">Works with screenshots from clipboard</div>
+        </div>
+      </div>
+      <!-- Preview -->
+      <div id="sc-preview-wrap" class="hidden" style="margin-top:10px;position:relative">
+        <img id="sc-preview-img" src="" style="width:100%;max-height:160px;object-fit:contain;border-radius:8px;border:1px solid var(--border-2)">
+        <button type="button" class="sc-clear-btn" onclick="clearScreenshot()">✕ Remove</button>
+      </div>
+    </div>
+    <span class="hint" style="margin-top:4px;display:block">Chart screenshots help you review setups later</span>
+  </div>
+
+  <div class="fg" style="margin-bottom:20px"><label>Trade Notes</label><textarea id="f-notes" placeholder="Trade rationale, entry thesis, key observations, mistakes, lessons learned..."></textarea></div>
+
+  <div style="display:flex;gap:8px;justify-content:flex-end">
+    <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+    <button class="btn btn-primary" onclick="saveTrade()">Save Trade</button>
+  </div>
+</div>
+</div>
+
+<!-- ══ TRADE DRAWER ══ -->
+<div id="drawer-overlay" class="drawer-overlay" onclick="if(event.target===this)closeDrawer()">
+  <div class="drawer">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px">
+      <div>
+        <div style="font-size:20px;font-weight:800;letter-spacing:-0.4px;margin-bottom:4px" id="dr-sym">—</div>
+        <div id="dr-dir" style="margin-bottom:4px"></div>
+        <div style="font-size:10px;color:var(--text-3);font-family:var(--mono)" id="dr-meta">—</div>
+      </div>
+      <button class="modal-x" onclick="closeDrawer()"><svg class="icon" viewBox="0 0 24 24"><use href="#ic-x"/></svg></button>
+    </div>
+    <div style="background:var(--surface-2);border-radius:12px;padding:16px;margin-bottom:4px">
+      <div style="font-size:9px;font-weight:700;color:var(--text-3);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.7px;margin-bottom:4px">Realized P&L</div>
+      <div class="kpi-value" id="dr-pnl" style="font-size:30px">—</div>
+      <div style="font-size:11px;color:var(--text-3);font-family:var(--mono);margin-top:4px" id="dr-pct">—</div>
+    </div>
+    <div class="d-section"><div class="d-section-title">Trade Details</div><div id="dr-details"></div></div>
+    <div class="d-section"><div class="d-section-title">Notes</div><p id="dr-notes" style="font-size:13px;line-height:1.6;color:var(--text-2)"></p></div>
+    <div class="d-section"><div class="d-section-title">Chart Screenshot</div><div id="dr-sc"></div></div>
+  </div>
+</div>
+
+<!-- ══ VOICE OVERLAY (improved) ══ -->
+<div class="voice-overlay" id="voice-overlay">
+  <div class="voice-orb" id="voice-orb">
+    <svg class="icon icon-lg" viewBox="0 0 24 24"><use href="#ic-mic"/></svg>
+  </div>
+  <div class="voice-bars">
+    <div class="voice-bar"></div><div class="voice-bar"></div><div class="voice-bar"></div>
+    <div class="voice-bar"></div><div class="voice-bar"></div><div class="voice-bar"></div>
+    <div class="voice-bar"></div><div class="voice-bar"></div>
+  </div>
+  <div class="voice-transcript" id="voice-text">Listening...</div>
+  <div class="voice-hint">Say a command • Click mic again to stop</div>
+  <div class="voice-commands-grid">
+    <div class="voice-cmd"><span>"dashboard"</span></div>
+    <div class="voice-cmd"><span>"trades"</span></div>
+    <div class="voice-cmd"><span>"analytics"</span></div>
+    <div class="voice-cmd"><span>"journal"</span></div>
+    <div class="voice-cmd"><span>"add trade"</span></div>
+    <div class="voice-cmd"><span>"export"</span></div>
+    <div class="voice-cmd"><span>"dark mode"</span></div>
+    <div class="voice-cmd"><span>"my balance"</span></div>
+    <div class="voice-cmd"><span>"win rate"</span></div>
+    <div class="voice-cmd"><span>"today's pnl"</span></div>
+    <div class="voice-cmd"><span>"how many trades"</span></div>
+    <div class="voice-cmd"><span>"log out"</span></div>
+  </div>
+</div>
+
+<!-- ══ TOAST STACK ══ -->
+<div class="toast-stack" id="toast-stack"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="app.js"></script>
+<script src="charts.js"></script>
+</body>
+</html>
